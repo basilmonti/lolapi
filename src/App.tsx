@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import SearchBar from './components/searchBar'
 import ContainerHst from './components/containerHst';
+import ContainerRte from './components/containerRte';
 import {Button} from '@material-ui/core';
 
 interface State {
@@ -25,7 +26,6 @@ class App extends React.Component<{}, State>{
       <div>
         <SearchBar onSelect={this.onSelect}/>
         <ContainerHst accountId={this.state.accountId} containerType="sdf"/>
-        <Button>TEst</Button>
       </div>
     )
   }

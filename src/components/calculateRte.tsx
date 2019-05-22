@@ -1,6 +1,7 @@
 import React from 'react';
 import { baseUrl, apiKey } from '../enviroment';
 import Axios from 'axios';
+import containerHst from './containerHst';
 
 interface Props {
     accountId: string;
@@ -93,3 +94,4 @@ class calculateRte extends React.Component<Props, State>{
         return gameResult;
     }
 }
+export default calculateRte;

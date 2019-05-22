@@ -25,7 +25,7 @@ class SearchBar extends React.Component<Props, State> {
     render() {
         return (
             <div>
-                <input type="text" onKeyPress={this.onChangeEnter} onBlur={this.onChange} defaultValue="Beschwörernamen eingeben" />
+                <input type="text" onKeyPress={this.onChangeEnter} onBlur={this.onChange} />
             </div>
         )
     }

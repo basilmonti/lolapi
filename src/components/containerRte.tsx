@@ -29,4 +29,6 @@ class containerRte extends React.Component<Props, State>{
             </div>
         )
     }
+    
 }
+export default containerRte;
