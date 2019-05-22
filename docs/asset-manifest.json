@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/lolapi/static/css/main.19393e92.chunk.css",
-    "main.js": "/lolapi/static/js/main.ce6d690d.chunk.js",
-    "main.js.map": "/lolapi/static/js/main.ce6d690d.chunk.js.map",
-    "runtime~main.js": "/lolapi/static/js/runtime~main.2d4c2ff7.js",
-    "runtime~main.js.map": "/lolapi/static/js/runtime~main.2d4c2ff7.js.map",
-    "static/js/2.9fd14897.chunk.js": "/lolapi/static/js/2.9fd14897.chunk.js",
-    "static/js/2.9fd14897.chunk.js.map": "/lolapi/static/js/2.9fd14897.chunk.js.map",
-    "index.html": "/lolapi/index.html",
-    "precache-manifest.5f6677cc4f7169d73557417b4ba6204d.js": "/lolapi/precache-manifest.5f6677cc4f7169d73557417b4ba6204d.js",
-    "service-worker.js": "/lolapi/service-worker.js",
-    "static/css/main.19393e92.chunk.css.map": "/lolapi/static/css/main.19393e92.chunk.css.map"
+    "main.css": "./static/css/main.19393e92.chunk.css",
+    "main.js": "./static/js/main.49f2c327.chunk.js",
+    "main.js.map": "./static/js/main.49f2c327.chunk.js.map",
+    "runtime~main.js": "./static/js/runtime~main.d653cc00.js",
+    "runtime~main.js.map": "./static/js/runtime~main.d653cc00.js.map",
+    "static/js/2.9fd14897.chunk.js": "./static/js/2.9fd14897.chunk.js",
+    "static/js/2.9fd14897.chunk.js.map": "./static/js/2.9fd14897.chunk.js.map",
+    "index.html": "./index.html",
+    "precache-manifest.c527d097b5fc437399f72601a31308b4.js": "./precache-manifest.c527d097b5fc437399f72601a31308b4.js",
+    "service-worker.js": "./service-worker.js",
+    "static/css/main.19393e92.chunk.css.map": "./static/css/main.19393e92.chunk.css.map"
   }
 }
