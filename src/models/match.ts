@@ -1,4 +1,4 @@
-export interface Match {
+export interface IMatch {
     gameId: number;
     champion: string;
     queue: string;

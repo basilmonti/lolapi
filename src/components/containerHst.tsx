@@ -1,45 +1,44 @@
-import React from 'react';
-import { Table } from '@material-ui/core';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import { baseUrl, apiKey } from '../enviroment';
-import Axios from 'axios';
-import { Match } from '../models/match'
+import { Table } from "@material-ui/core";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import Axios from "axios";
+import React from "react";
+import { apiKey, baseUrl } from "../enviroment";
+import { IMatch } from "../models/match";
 
-interface Props {
+interface IProps {
     accountId: string;
     containerType: string;
 }
 
-interface State {
+interface IState {
     accountId: string;
     jsonData: any;
     containerType: string;
-    matches?: Match[];
+    matches?: IMatch[];
 }
 
-class containerHst extends React.Component<Props, State> {
-    constructor(props: Props) {
+class ContainerHst extends React.Component<IProps, IState> {
+    constructor(props: IProps) {
         super(props);
-
 
         this.getMatchHst = this.getMatchHst.bind(this);
         this.checkMatchWin = this.checkMatchWin.bind(this);
 
         this.state = {
             accountId: this.props.accountId,
+            containerType: this.props.containerType,
             jsonData: null,
-            containerType: this.props.containerType
-        }
+        };
     }
-    public componentDidUpdate(prevProps: Props, prevState: State, snapShot: any) {
+    public componentDidUpdate(prevProps: IProps, prevState: IState, snapShot: any) {
         if (prevProps.accountId !== this.props.accountId) {
             this.getMatchHst(this.props.accountId);
         }
     }
-    render() {
+    public render() {
         return (
             <div>
                 {this.state.matches ? (
@@ -66,8 +65,8 @@ class containerHst extends React.Component<Props, State> {
                                             <TableCell align="right">{f.lane}</TableCell>
                                             <TableCell align="right">{f.winstatus}</TableCell>
                                         </TableRow>
-                                    )
-                                }
+                                    );
+                                },
                                 )
                             }
                         </TableBody>
@@ -75,36 +74,41 @@ class containerHst extends React.Component<Props, State> {
                 ) : null}
 
             </div>
-        )
+        );
     }
     private getMatchHst(accountID: string) {
         const url = `${baseUrl}/match/v4/matchlists/by-account/${accountID}?endIndex=10&api_key=${apiKey}`;
-        let newMatches: Match[];
+        // const newMatches: Match[];
         Axios.get(url)
-            .then(response => {
-                const matches = response.data.matches.map((match: Match) => {
+            .then((response) => {
+                const matches = response.data.matches.map((match: IMatch) => {
 
                     return {
+                        champion: match.champion,
                         gameId: match.gameId,
-                        champion: match.champion, queue: match.queue, timestamp: match.timestamp, role: match.role, lane: match.lane
+                        lane: match.lane,
+                        queue: match.queue,
+                        role: match.role,
+                        timestamp: match.timestamp,
                     };
                 });
 
                 this.setState({ ...this.state, matches });
-                //this.checkMatchWin(matches)
+                // this.checkMatchWin(matches)
             })
-            .catch(function (error) {
-                console.log(error);
+            // tslint:disable-next-line:only-arrow-functions
+            .catch(function(error) {
+                // console.log(error);
             });
     }
-    private checkMatchWin(matches: Match[]) {
-        const newMatches = matches.map((match: Match) => {
+    private checkMatchWin(matches: IMatch[]) {
+        const newMatches = matches.map((match: IMatch) => {
             const url = `${baseUrl}/match/v4/matches/${match.gameId}?api_key=${apiKey}`;
             let result: any;
-            let participantId = '';
-            let gameResult = '';
+            let participantId = "";
+            let gameResult = "";
             Axios.get(url)
-                .then(response => {
+                .then((response) => {
                     result = response.data;
                     result.participantIdentities.forEach((participantIdentitie: any) => {
                         if (participantIdentitie.player === this.state.accountId) {
@@ -115,21 +119,22 @@ class containerHst extends React.Component<Props, State> {
                     result.participants.forEach((participant: any) => {
                         if (participant.participantId === participantId) {
                             if (participant.stats.win) {
-                                gameResult = 'Gewonnen!';
+                                gameResult = "Gewonnen!";
                             } else {
-                                gameResult = 'Verloren!'
+                                gameResult = "Verloren!";
                             }
                         }
                     });
-                    return {...match, winstatus: gameResult}
-                    //this.setState({ ...this.state, winStatus: gameResult });
+                    return { ...match, winstatus: gameResult };
+                    // this.setState({ ...this.state, winStatus: gameResult });
                 })
-                .catch(function (error) {
-                    console.log(error);
+                // tslint:disable-next-line:only-arrow-functions
+                .catch(function(error) {
+                    // console.log(error);
                     return null;
                 });
         });
-        //this.setState({...this.state, matches: newMatches});
+        // this.setState({...this.state, matches: newMatches});
     }
 }
-export default containerHst;
+export default ContainerHst;
