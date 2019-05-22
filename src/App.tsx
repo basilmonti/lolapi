@@ -2,9 +2,12 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import SearchBar from './components/searchBar'
+import ContainerHst from './components/containerHst';
+import {Button} from '@material-ui/core';
 
 interface State {
-  searchWord: String;
+  accountId: string;
+
 }
 
 class App extends React.Component<{}, State>{
@@ -12,7 +15,7 @@ class App extends React.Component<{}, State>{
     super(props);
 
     this.state = {
-      searchWord: ''
+      accountId: ''
     }
     
     this.onSelect = this.onSelect.bind(this);
@@ -21,12 +24,13 @@ class App extends React.Component<{}, State>{
     return(
       <div>
         <SearchBar onSelect={this.onSelect}/>
-        {this.state.searchWord}
+        <ContainerHst accountId={this.state.accountId} containerType="sdf"/>
+        <Button>TEst</Button>
       </div>
     )
   }
-  private onSelect(result: string){
-      this.setState({...this.state, searchWord: result})
+  private onSelect(result: any){
+      this.setState({...this.state, accountId: result.accountId})
   }
 }
 
