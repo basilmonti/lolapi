@@ -1,6 +1,7 @@
 {
   "name": "lolapi",
   "version": "0.1.0",
+  "homepage": "https://basilmonti.github.io/lolapi",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^3.9.3",
